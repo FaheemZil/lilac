@@ -65,9 +65,4 @@ class MessageModel {
   }
 }
 
-enum MessageType {
-  text,
-  image,
-  voice,
-  file,
-}
+enum MessageType { text, image, voice, file }

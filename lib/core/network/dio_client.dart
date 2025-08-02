@@ -2,8 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:test_project/core/network/interceptors.dart';
-
-import '../constants/app_constants.dart';
+import 'package:test_project/services/api_endpoints.dart';
 
 class DioClient {
   static DioClient? _instance;
@@ -12,7 +11,7 @@ class DioClient {
   DioClient._internal() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: AppConstants.baseUrl,
+        baseUrl: ApiEndpoints.baseUrl,
         connectTimeout: const Duration(seconds: 30),
         receiveTimeout: const Duration(seconds: 30),
         sendTimeout: const Duration(seconds: 30),

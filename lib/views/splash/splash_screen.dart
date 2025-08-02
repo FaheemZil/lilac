@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:test_project/core/routes/app_router.dart';
 
-import '../../controllers/auth_controller.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/theme/app_theme.dart';
 import '../../widgets/common/app_buttons.dart';
@@ -25,12 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToNextScreen() {
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        final authController = context.read<AuthController>();
-        if (authController.isLoggedIn) {
-          Navigator.pushNamed(context, AppRouter.contacts);
-        } else {
-          Navigator.pushNamed(context, AppRouter.phone);
-        }
+        Navigator.pushNamed(context, AppRouter.phone);
       }
     });
   }
@@ -138,8 +131,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       // Direct to Contacts (for testing)
                       AppElevatedButton(
                         text: 'Go to Contacts',
-                        onPressed: () =>
-                            Navigator.pushNamed(context, AppRouter.contacts),
+                        onPressed: () {},
                       ),
                     ],
                   ),

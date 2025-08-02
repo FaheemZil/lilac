@@ -1,10 +1,8 @@
 class ChatMessagesResponse {
   final List<Customer>? data;
   final List<UserSettings>? included;
-  final Meta? meta;
-  final Links? links;
 
-  ChatMessagesResponse({this.data, this.included, this.meta, this.links});
+  ChatMessagesResponse({this.data, this.included});
 
   factory ChatMessagesResponse.fromJson(Map<String, dynamic> json) {
     return ChatMessagesResponse(
@@ -16,18 +14,7 @@ class ChatMessagesResponse {
               json['included'].map((x) => UserSettings.fromJson(x)),
             )
           : null,
-      meta: json['meta'] != null ? Meta.fromJson(json['meta']) : null,
-      links: json['links'] != null ? Links.fromJson(json['links']) : null,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'data': data?.map((x) => x.toJson()).toList(),
-      'included': included?.map((x) => x.toJson()).toList(),
-      'meta': meta?.toJson(),
-      'links': links?.toJson(),
-    };
   }
 }
 
@@ -35,9 +22,8 @@ class Customer {
   final String? type;
   final String? id;
   final CustomerAttributes? attributes;
-  final Relationships? relationships;
 
-  Customer({this.type, this.id, this.attributes, this.relationships});
+  Customer({this.type, this.id, this.attributes});
 
   factory Customer.fromJson(Map<String, dynamic> json) {
     return Customer(
@@ -46,19 +32,7 @@ class Customer {
       attributes: json['attributes'] != null
           ? CustomerAttributes.fromJson(json['attributes'])
           : null,
-      relationships: json['relationships'] != null
-          ? Relationships.fromJson(json['relationships'])
-          : null,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'type': type,
-      'id': id,
-      'attributes': attributes?.toJson(),
-      'relationships': relationships?.toJson(),
-    };
   }
 }
 
@@ -182,48 +156,6 @@ class CustomerAttributes {
       age: json['age'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'message_received_from_partner_at': messageReceivedFromPartnerAt,
-      'auth_user_id': authUserId,
-      'name': name,
-      'username': username,
-      'email': email,
-      'profile_photo_path': profilePhotoPath,
-      'profile_photo_id': profilePhotoId,
-      'phone': phone,
-      'gender': gender,
-      'country_id': countryId,
-      'country_name': countryName,
-      'state_id': stateId,
-      'state_name': stateName,
-      'city_id': cityId,
-      'city_name': cityName,
-      'custom_city_name': customCityName,
-      'is_active': isActive,
-      'customer_code': customerCode,
-      'is_premium_customer': isPremiumCustomer,
-      'is_online': isOnline,
-      'bio_intro_text': bioIntroText,
-      'last_active_at': lastActiveAt,
-      'address': address,
-      'date_of_birth': dateOfBirth,
-      'native_language_id': nativeLanguageId,
-      'native_language_name': nativeLanguageName,
-      'referral_code': referralCode,
-      'referred_by': referredBy,
-      'referred_id': referredId,
-      'is_vanish_mode_enabled': isVanishModeEnabled,
-      'is_chat_initiated': isChatInitiated,
-      'likeback_created_at': likebackCreatedAt,
-      'profile_photo_url': profilePhotoUrl,
-      'square100_profile_photo_url': square100ProfilePhotoUrl,
-      'square300_profile_photo_url': square300ProfilePhotoUrl,
-      'square500_profile_photo_url': square500ProfilePhotoUrl,
-      'age': age,
-    };
-  }
 }
 
 class Relationships {
@@ -242,13 +174,6 @@ class Relationships {
           : null,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'blockedContacts': blockedContacts?.toJson(),
-      'userSettings': userSettings?.toJson(),
-    };
-  }
 }
 
 class BlockedContacts {
@@ -261,10 +186,6 @@ class BlockedContacts {
       data: json['data'] != null ? List<dynamic>.from(json['data']) : null,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {'data': data};
-  }
 }
 
 class UserSettingsData {
@@ -275,10 +196,6 @@ class UserSettingsData {
 
   factory UserSettingsData.fromJson(Map<String, dynamic> json) {
     return UserSettingsData(type: json['type'], id: json['id']);
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'type': type, 'id': id};
   }
 }
 
@@ -297,10 +214,6 @@ class UserSettings {
           ? UserSettingsAttributes.fromJson(json['attributes'])
           : null,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'type': type, 'id': id, 'attributes': attributes?.toJson()};
   }
 }
 
@@ -371,31 +284,6 @@ class UserSettingsAttributes {
       isReadReceiptsEnabled: json['is_read_receipts_enabled'],
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'user_id': userId,
-      'is_real_gifts_accepted': isRealGiftsAccepted,
-      'is_gender_revealed': isGenderRevealed,
-      'is_height_revealed': isHeightRevealed,
-      'is_religion_revealed': isReligionRevealed,
-      'is_drinking_habit_revealed': isDrinkingHabitRevealed,
-      'is_smoking_habit_revealed': isSmokingHabitRevealed,
-      'is_sexual_orientation_revealed': isSexualOrientationRevealed,
-      'is_educational_qualification_revealed':
-          isEducationalQualificationRevealed,
-      'is_personality_traits_revealed': isPersonalityTraitsRevealed,
-      'is_lifestyle_activities_revealed': isLifestyleActivitiesRevealed,
-      'is_contact_discovery_enabled': isContactDiscoveryEnabled,
-      'is_ghost_mode_enabled': isGhostModeEnabled,
-      'is_dark_mode_enabled': isDarkModeEnabled,
-      'is_receiving_push_notifications': isReceivingPushNotifications,
-      'is_receiving_flash_messages': isReceivingFlashMessages,
-      'is_last_seen_enabled': isLastSeenEnabled,
-      'is_online_status_enabled': isOnlineStatusEnabled,
-      'is_read_receipts_enabled': isReadReceiptsEnabled,
-    };
-  }
 }
 
 class Meta {
@@ -409,10 +297,6 @@ class Meta {
           ? Pagination.fromJson(json['pagination'])
           : null,
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'pagination': pagination?.toJson()};
   }
 }
 
@@ -439,31 +323,5 @@ class Pagination {
       currentPage: json['current_page'],
       totalPages: json['total_pages'],
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'total': total,
-      'count': count,
-      'per_page': perPage,
-      'current_page': currentPage,
-      'total_pages': totalPages,
-    };
-  }
-}
-
-class Links {
-  final String? self;
-  final String? first;
-  final String? last;
-
-  Links({this.self, this.first, this.last});
-
-  factory Links.fromJson(Map<String, dynamic> json) {
-    return Links(self: json['self'], first: json['first'], last: json['last']);
-  }
-
-  Map<String, dynamic> toJson() {
-    return {'self': self, 'first': first, 'last': last};
   }
 }

@@ -1,4 +1,5 @@
-import '../core/constants/app_constants.dart';
+import 'package:test_project/services/api_endpoints.dart';
+
 import '../core/network/dio_client.dart';
 import '../core/utils/device_meta.dart';
 import '../models/auth_response_model.dart';
@@ -11,7 +12,7 @@ class AuthService {
 
   Future<OtpResponseModel> sendOtp(String phoneNumber) async {
     final response = await DioClient.instance.post(
-      AppConstants.sendOtpEndpoint,
+      ApiEndpoints.sendOtpEndpoint,
       data: {
         "data": {
           "type": "registration_otp_codes",
@@ -28,7 +29,7 @@ class AuthService {
     required String otp,
   }) async {
     final response = await DioClient.instance.post(
-      AppConstants.verifyOtpEndpoint,
+      ApiEndpoints.verifyOtpEndpoint,
       data: {
         "data": {
           "type": "registration_otp_codes",

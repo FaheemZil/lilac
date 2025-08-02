@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../core/theme/app_theme.dart';
-
 /// Custom text field with app theming
 class AppTextField extends StatelessWidget {
   final String? hintText;
@@ -76,101 +74,6 @@ class AppTextField extends StatelessWidget {
         contentPadding:
             contentPadding ??
             const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      ),
-    );
-  }
-}
-
-/// Password text field variant
-class AppPasswordField extends StatefulWidget {
-  final String? hintText;
-  final String? labelText;
-  final TextEditingController? controller;
-  final String? Function(String?)? validator;
-  final void Function(String)? onChanged;
-
-  const AppPasswordField({
-    super.key,
-    this.hintText,
-    this.labelText,
-    this.controller,
-    this.validator,
-    this.onChanged,
-  });
-
-  @override
-  State<AppPasswordField> createState() => _AppPasswordFieldState();
-}
-
-class _AppPasswordFieldState extends State<AppPasswordField> {
-  bool _obscureText = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppTextField(
-      controller: widget.controller,
-      hintText: widget.hintText,
-      labelText: widget.labelText,
-      obscureText: _obscureText,
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      keyboardType: TextInputType.visiblePassword,
-      prefixIcon: const Icon(Icons.lock_outline, color: AppTheme.textSecondary),
-      suffixIcon: IconButton(
-        icon: Icon(
-          _obscureText ? Icons.visibility : Icons.visibility_off,
-          color: AppTheme.textSecondary,
-        ),
-        onPressed: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
-        },
-      ),
-    );
-  }
-}
-
-/// Email text field variant
-class AppEmailField extends StatelessWidget {
-  final String? hintText;
-  final String? labelText;
-  final TextEditingController? controller;
-  final String? Function(String?)? validator;
-  final void Function(String)? onChanged;
-
-  const AppEmailField({
-    super.key,
-    this.hintText,
-    this.labelText,
-    this.controller,
-    this.validator,
-    this.onChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppTextField(
-      controller: controller,
-      hintText: hintText ?? 'Enter your email',
-      labelText: labelText,
-      keyboardType: TextInputType.emailAddress,
-      textCapitalization: TextCapitalization.none,
-      validator:
-          validator ??
-          (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter your email';
-            }
-            if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-              return 'Please enter a valid email';
-            }
-            return null;
-          },
-      onChanged: onChanged,
-      prefixIcon: const Icon(
-        Icons.email_outlined,
-        color: AppTheme.textSecondary,
       ),
     );
   }

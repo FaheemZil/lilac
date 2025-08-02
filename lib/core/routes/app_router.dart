@@ -4,7 +4,6 @@ import '../../views/auth/otp_screen.dart';
 import '../../views/auth/phone_screen.dart';
 import '../../views/chat/chat_screen.dart';
 import '../../views/chat/messages_screen.dart';
-import '../../views/contacts/contacts_screen.dart';
 import '../../views/splash/splash_screen.dart';
 
 class AppRouter {
@@ -25,7 +24,6 @@ class AppRouter {
           ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
       return ChatScreen(receiverId: args['receiverId'] as String);
     },
-    contacts: (context) => const ContactsScreen(),
   };
 
   static String get initialRoute => splash;

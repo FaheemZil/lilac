@@ -139,14 +139,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-  japx:
-    dependency: "direct main"
-    description:
-      name: japx
-      sha256: "04e94094070dbbdf4ea39c213bc2bfbafbebd53ca5b62d61c492d0b1d54047db"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.0"
   leak_tracker:
     dependency: transitive
     description:

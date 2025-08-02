@@ -41,10 +41,6 @@ dependencies:
   # HTTP client
   dio: ^5.4.0
   
-  # JSON:API parsing
-  japx: ^2.2.0
-  
-  
   # UI components
   google_fonts: ^6.2.1
   
